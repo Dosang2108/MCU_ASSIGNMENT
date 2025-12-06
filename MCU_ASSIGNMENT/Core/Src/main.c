@@ -22,7 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "lcd_i2c.h"
+#include "software_timer.h"
+#include "i2c.h"
+#include "traffic_light.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -119,7 +122,7 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -173,13 +176,14 @@ int main(void)
         lcd_gotoxy(3, 1);
         lcd_write_string("QUY VUONG");
         HAL_Delay(3000);
+      setTimer(0, 250);
+	  while (1)
+	  {
+		/* USER CODE END WHILE */
+		TrafficBlink(RED);
 
-  while (1)
-  {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
+		/* USER CODE BEGIN 3 */
+	  }
   /* USER CODE END 3 */
 }
 
@@ -386,7 +390,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(htim->Instance == TIM2){
+		timerRun();
+	}
+}
 /* USER CODE END 4 */
 
 /**

@@ -59,39 +59,48 @@ int sw=0;
 void TrafficBlink(int state){
 	switch(state){
 		case RED:
-			if(timer_flag[0]) sw=1- sw;
+			if(timer_flag[0]) {
+				sw=1- sw;
+				setTimer(0, BLINK_TIME);
+			}
 			if(sw){
 				TrafficLight1Control(RED);
 				TrafficLight2Control(RED);
-				setTimer(0, BLINK_TIME);
+
 			} else {
 				TrafficLight1Control(OFF_STATE);
 				TrafficLight2Control(OFF_STATE);
-				setTimer(0, BLINK_TIME);
+
 			}
 			break;
 		case YELLOW:
-			if(timer_flag[0]) sw=1- sw;
+			if(timer_flag[0]) {
+				sw=1- sw;
+				setTimer(0, BLINK_TIME);
+			}
 			if(sw){
 				TrafficLight1Control(YELLOW);
 				TrafficLight2Control(YELLOW);
-				setTimer(0, BLINK_TIME);
+
 			} else {
 				TrafficLight1Control(OFF_STATE);
 				TrafficLight2Control(OFF_STATE);
-				setTimer(0, BLINK_TIME);
+
 			}
 			break;
 		case GREEN:
-			if(timer_flag[0]) sw=1- sw;
+			if(timer_flag[0]) {
+				sw=1- sw;
+				setTimer(0, BLINK_TIME);
+			}
 			if(sw){
 				TrafficLight1Control(GREEN);
 				TrafficLight2Control(GREEN);
-				setTimer(0, BLINK_TIME);
+
 			} else {
 				TrafficLight1Control(OFF_STATE);
 				TrafficLight2Control(OFF_STATE);
-				setTimer(0, BLINK_TIME);
+
 			}
 			break;
 		default : break;
