@@ -8,6 +8,13 @@
 #ifndef INC_SOFTWARE_TIMER_H_
 #define INC_SOFTWARE_TIMER_H_
 
+#define tick 10
+#include"main.h"
+volatile int timerCounter [4];
+volatile int timer_flag [4];
 
+void setTimer(int num, int duration);
+
+void timerRun();
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

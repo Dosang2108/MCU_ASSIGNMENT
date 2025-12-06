@@ -1,0 +1,4 @@
+traffic_light.c:10:6:TrafficLight1Control	16	static
+traffic_light.c:31:6:TrafficLight2Control	16	static
+traffic_light.c:52:6:TwoWayControl	16	static
+traffic_light.c:59:6:TrafficBlink	16	static
