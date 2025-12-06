@@ -1,0 +1,3 @@
+# ignore files with these following file extension
+*.psdbak
+*.workspace
