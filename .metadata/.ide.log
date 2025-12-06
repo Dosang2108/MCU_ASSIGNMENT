@@ -1120,3 +1120,76 @@
 2025-12-06 12:44:36,119 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 2015mS.
 2025-12-06 12:44:36,120 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
 2025-12-06 12:44:36,122 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2025-12-06 14:54:29,919 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,920 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,920 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,920 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,940 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,940 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,956 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:29,956 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:33,972 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:33,972 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:33,973 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:33,973 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:33,989 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:33,989 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:34,007 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:34,007 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,937 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,938 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,938 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,938 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,955 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,956 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,974 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:45,975 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,701 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,702 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,702 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,702 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,718 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,718 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,738 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:54:58,738 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:55:03,902 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 1006971264 Bytes (1073741824)
+2025-12-06 14:55:06,387 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 992572152 Bytes (1073741824)
+2025-12-06 14:55:07,850 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 991662368 Bytes (1073741824)
+2025-12-06 14:55:08,046 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2025-12-06 14:55:08,046 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: USART
+2025-12-06 14:55:08,046 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: TIM1_8F1
+2025-12-06 14:55:08,046 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2025-12-06 14:55:08,046 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2025-12-06 14:55:08,046 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2025-12-06 14:55:08,047 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: I2C
+2025-12-06 14:55:08,048 [INFO] CodeGenerator:663 - code generatio: config db path: D:\STM32CubeIDE_1.7.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.3.0.202107141111\\db\
+2025-12-06 14:55:08,050 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-06 14:55:08,050 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-06 14:55:08,493 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp_save
+2025-12-06 14:55:08,548 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp
+2025-12-06 14:55:08,570 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp_save
+2025-12-06 14:55:08,639 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp
+2025-12-06 14:55:08,652 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_Analogue is not available in your config.xml file
+2025-12-06 14:55:08,652 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_DigitalFolter is not available in your config.xml file
+2025-12-06 14:55:08,802 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c_save
+2025-12-06 14:55:08,858 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c
+2025-12-06 14:55:08,861 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h_save
+2025-12-06 14:55:08,899 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h
+2025-12-06 14:55:08,915 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c_save
+2025-12-06 14:55:08,985 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c
+2025-12-06 14:55:08,987 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp_save
+2025-12-06 14:55:09,032 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp
+2025-12-06 14:55:09,051 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h_save
+2025-12-06 14:55:09,151 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h
+2025-12-06 14:55:09,184 [WARN] IPConfigManager:3148 - IP not found : TIM
+2025-12-06 14:55:09,185 [WARN] CodeGenerator:3268 - IP not found : null
+2025-12-06 14:55:09,206 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h_save
+2025-12-06 14:55:09,305 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h
+2025-12-06 14:55:09,323 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c_save
+2025-12-06 14:55:09,478 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c
+2025-12-06 14:55:10,449 [INFO] ProjectBuilder:2578 - Time for Copy HAL[1] : 115mS.
+2025-12-06 14:55:10,454 [INFO] ProjectBuilder:3622 - Project Generator version: 3.14.1
+2025-12-06 14:55:11,002 [INFO] ConfigFileManager:1271 - The Die is : DIE410
+2025-12-06 14:55:12,401 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 1947mS.
+2025-12-06 14:55:12,401 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2025-12-06 14:55:12,402 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
