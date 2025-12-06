@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00000f24  00000000  00000000  000283b0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00008237  00000000  00000000  000292d4  2**0
+ 17 .debug_line   00008213  00000000  00000000  000292d4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0007e67c  00000000  00000000  0003150b  2**0
+ 18 .debug_str    0007e716  00000000  00000000  000314e7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000afb87  2**0
+ 19 .comment      00000053  00000000  00000000  000afbfd  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001a30  00000000  00000000  000afbdc  2**2
+ 20 .debug_frame  00001a30  00000000  00000000  000afc50  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -369,8 +369,8 @@ static void MX_GPIO_Init(void)
  80002d4:	481d      	ldr	r0, [pc, #116]	; (800034c <MX_GPIO_Init+0x10c>)
  80002d6:	f000 fa7d 	bl	80007d4 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : PC0 PC1 PC2 PC3 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3;
+  /*Configure GPIO pins : BUTTON1_Pin BUTTON2_Pin BUTTON3_Pin BUTTON4_Pin */
+  GPIO_InitStruct.Pin = BUTTON1_Pin|BUTTON2_Pin|BUTTON3_Pin|BUTTON4_Pin;
  80002da:	230f      	movs	r3, #15
  80002dc:	613b      	str	r3, [r7, #16]
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;

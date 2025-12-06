@@ -1,0 +1,8 @@
+fsm_manual.c:14:6:lcd_center_text	24	static
+fsm_manual.c:24:6:handle_apply_initial	8	static
+fsm_manual.c:35:5:is_valid_combo	24	static
+fsm_manual.c:39:6:start_edit_session	4	static
+fsm_manual.c:46:6:changeMode	16	static
+fsm_manual.c:56:6:end_edit_session_and_maybe_commit	8	static
+fsm_manual.c:66:6:displayDuration	32	static
+fsm_manual.c:79:6:fsm_manual_run	8	static
