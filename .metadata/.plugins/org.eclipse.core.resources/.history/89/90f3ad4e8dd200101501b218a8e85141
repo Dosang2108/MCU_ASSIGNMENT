@@ -166,7 +166,7 @@ int main(void)
         HAL_I2C_DeInit(&hi2c1);
 
         // 4) Khởi tạo I2C m�?m trên PB7 (SDA), PB6 (SCL)
-        I2C_init(GPIOB, GPIO_PIN_9, GPIOB, GPIO_PIN_8);
+        I2C_init(GPIOB, GPIO_PIN_7, GPIOB, GPIO_PIN_6);
 
         // 5) Khởi tạo LCD với địa chỉ 7-bit vừa tìm được
         lcd_init(address);           // CHỈ TRUYỀN 7-bit, KHÔNG <<1
