@@ -50,6 +50,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 MCU_ASSIGNMENT.list \
 
+OBJCOPY_HEX += \
+MCU_ASSIGNMENT.hex \
+
 OBJCOPY_BIN += \
 MCU_ASSIGNMENT.bin \
 
@@ -61,8 +64,8 @@ all: main-build
 main-build: MCU_ASSIGNMENT.elf secondary-outputs
 
 # Tool invocations
-MCU_ASSIGNMENT.elf: $(OBJS) $(USER_OBJS) D:\PROJECT_VXL\MCU_ASSIGNMENT\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "MCU_ASSIGNMENT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\PROJECT_VXL\MCU_ASSIGNMENT\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MCU_ASSIGNMENT.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+MCU_ASSIGNMENT.elf: $(OBJS) $(USER_OBJS) D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "MCU_ASSIGNMENT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MCU_ASSIGNMENT.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,6 +79,11 @@ MCU_ASSIGNMENT.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+MCU_ASSIGNMENT.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "MCU_ASSIGNMENT.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 MCU_ASSIGNMENT.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "MCU_ASSIGNMENT.bin"
 	@echo 'Finished building: $@'
@@ -83,10 +91,10 @@ MCU_ASSIGNMENT.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) MCU_ASSIGNMENT.elf
+	-$(RM) $(OBJCOPY_HEX)$(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) MCU_ASSIGNMENT.elf
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
