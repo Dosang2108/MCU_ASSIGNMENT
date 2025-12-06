@@ -1,8 +1,67 @@
 /*
  * scheduler.c
  *
- *  Created on: Dec 6, 2025
- *      Author: Sang
+ *  Created on: Oct 27, 2025
+ *      Author: ADMIN
  */
 
+#include "scheduler.h"
 
+Task pTask[NUM_TASK];
+
+uint8_t curr_task=0;
+uint64_t tick=0;
+
+void SCH_Init(){
+	for(uint8_t i=0; i<NUM_TASK; i++){
+		SCH_Delete_Task(i);
+	}
+	curr_task=0;
+}
+
+uint32_t SCH_Add_Task(void (* pFunction)(), uint32_t DELAY, uint32_t PERIOD){
+	if(curr_task< NUM_TASK){
+		pTask[curr_task].DELAY= DELAY;
+		pTask[curr_task].NEXT_RUN= tick+(DELAY / TIME_CYCLE);
+		pTask[curr_task].PERIOD= PERIOD/TIME_CYCLE;
+		pTask[curr_task].TASK_ID= curr_task;
+		pTask[curr_task].pFunction= pFunction;
+		curr_task++;
+		return curr_task-1;
+	}
+	return curr_task;
+
+}
+
+void SCH_Update(){
+		tick++;
+}
+
+int runMe(uint8_t tick, uint8_t Period){
+	if(tick-Period==0) return 1;
+	return 0;
+}
+
+void SCH_Dispatch_Tasks(void){
+	for(int i=0; i< curr_task; i++){
+		if(runMe(tick,pTask[i].NEXT_RUN)){
+			(*pTask[i].pFunction)();
+			if(pTask[i].PERIOD==0){
+				SCH_Delete_Task(i);
+			}
+			else {
+				pTask[i].NEXT_RUN= tick+ pTask[i].PERIOD;
+			}
+		}
+	}
+}
+
+uint8_t SCH_Delete_Task(uint32_t taskID){
+	if(taskID<curr_task){
+		for(uint32_t i= taskID; i< curr_task-1; i++){
+			pTask[i]= pTask[i+1];
+		}
+		curr_task--;
+	}
+	return taskID;
+}
