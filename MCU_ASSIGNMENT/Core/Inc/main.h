@@ -67,6 +67,14 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define TRAFFIC_A0_Pin GPIO_PIN_6
+#define TRAFFIC_A0_GPIO_Port GPIOA
+#define TRAFFIC_A1_Pin GPIO_PIN_7
+#define TRAFFIC_A1_GPIO_Port GPIOA
+#define TRAFFIC_B0_Pin GPIO_PIN_8
+#define TRAFFIC_B0_GPIO_Port GPIOA
+#define TRAFFIC_B1_Pin GPIO_PIN_9
+#define TRAFFIC_B1_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
