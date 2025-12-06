@@ -17,7 +17,6 @@
 #define OFF_STATE 3
 #define BLINK_TIME 250
 
-
 void TrafficLight1Control(int state);
 void TrafficLight2Control(int state);
 
