@@ -1,0 +1,18 @@
+!SESSION 2025-12-06 09:49:59.154 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-12-06 09:50:23.105
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-12-06 09:50:23.152
+!MESSAGE Log4j initialized with config file D:\MCU\MCU_ASSIGNMENT\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-12-06 09:50:40.743
+!MESSAGE Started RMI Server, listening on port 41338
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-12-06 09:53:45.012
+!MESSAGE Indexed 'MCU_ASSIGNMENT' (20 sources, 79 headers) in 2.1 sec: 4,149 declarations; 17,875 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0091%)
