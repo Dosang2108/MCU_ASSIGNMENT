@@ -22,14 +22,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "global.h"
-#include "software_timer.h"
-#include "scheduler.h"
-#include "task.h"
-#include "fsm_automatic.h"
-#include "lcd_i2c.h"
-#include "fsm_handle.h"
-#include "fsm_manual.h"
+#include "global.h";
+#include "software_timer.h";
+#include "scheduler.h";
+#include "taskm";
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
