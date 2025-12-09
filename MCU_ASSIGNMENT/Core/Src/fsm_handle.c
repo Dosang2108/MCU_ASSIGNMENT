@@ -21,14 +21,14 @@ void lcd_center_text1(int row, char *str) {
 }
 
 void displayHandleInfo() {
-//	if (handle_pattern == 0) {
-//		lcd_center_text1(0, "Lane 0: RED");
-//		lcd_center_text1(1, "Lane 1: GREEN");
-//	}
-//	else {
-//		lcd_center_text1(0, "Lane 0: GREEN");
-//		lcd_center_text1(1, "Lane 1: RED");
-//	}
+	if (handle_pattern == 0) {
+		lcd_center_text1(0, "Lane 0: RED");
+		lcd_center_text1(1, "Lane 1: GREEN");
+	}
+	else {
+		lcd_center_text1(0, "Lane 0: GREEN");
+		lcd_center_text1(1, "Lane 1: RED");
+	}
 }
 
 void fsm_handle_run(void) {
@@ -49,14 +49,14 @@ void fsm_handle_run(void) {
 			handle_pattern = 0;
 			handle_apply_initial();
 			handle_toggle_state = 1;
-			setTimer(2, 25);
+			setTimer(2, 250);
 		}
 
 		if (isButtonPressed(2) == 1) {
 			handle_pattern = 1;
 			handle_apply_initial();
 			handle_toggle_state = 1;
-			setTimer(2, 25);
+			setTimer(2, 250);
 		}
 
 		if (timer_flag[2] == 1) {
@@ -70,7 +70,7 @@ void fsm_handle_run(void) {
 				TrafficLight2Control(OFF_STATE);
 			}
 
-			setTimer(2, 25);
+			setTimer(2, 250);
 		}
 	}
 }

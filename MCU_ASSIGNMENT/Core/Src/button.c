@@ -1,7 +1,7 @@
 /*
  * button.c
  *
- *  Created on: Dec 6, 2025
+ *  Created on: Oct 13, 2025
  *      Author: Sang
  */
 
@@ -65,4 +65,3 @@ void getKeyInput(int button) {
         }
    }
 }
-

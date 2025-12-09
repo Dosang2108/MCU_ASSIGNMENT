@@ -1,0 +1,142 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Dec 6, 2025
+ *      Author: Sang
+ */
+
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
+#include "string.h"
+
+static int toggle_state = 0;
+
+void lcd_center_text(int row, char *str) {
+    int len = strlen(str);
+    int padding = 0;
+    if (len < 16) {
+        padding = (16 - len) / 2;
+    }
+    lcd_gotoxy(padding, row);
+    lcd_write_string(str);
+}
+
+void handle_apply_initial(void) {
+	if (handle_pattern == 0) {
+		TrafficLight1Control(RED);
+		TrafficLight2Control(GREEN);
+	}
+	else {
+		TrafficLight1Control(GREEN);
+		TrafficLight2Control(RED);
+	}
+}
+
+int is_valid_combo(int red, int green, int yellow) {
+   return ((red - green) == yellow);
+}
+
+void start_edit_session(void) {
+	new_RED    = RED_DURATION;
+	new_YELLOW = YELLOW_DURATION;
+	new_GREEN  = GREEN_DURATION;
+	editing    = 1;
+}
+
+void changeMode(int mode) {
+	TrafficLight1Control(OFF_STATE);
+	TrafficLight2Control(OFF_STATE);
+
+	lcd_clear();
+	MODE = mode;
+	setTimer(2, 25);
+	toggle_state = 0;
+}
+
+void end_edit_session_and_maybe_commit(void) {
+	if (!editing) return;
+	if (is_valid_combo(new_RED, new_GREEN, new_YELLOW)) {
+		RED_DURATION    = new_RED;
+		YELLOW_DURATION = new_YELLOW;
+		GREEN_DURATION  = new_GREEN;
+	}
+	editing = 0;
+}
+
+void displayDuration(int mode, int duration) {
+	char str_line2[16];
+	switch(mode) {
+		case MODE_2: lcd_center_text(0, "MODE 02"); break;
+		case MODE_3: lcd_center_text(0, "MODE 03"); break;
+		case MODE_4: lcd_center_text(0, "MODE 04"); break;
+		default: lcd_center_text(0, "MODE UNKNOWN"); break;
+	}
+
+	snprintf(str_line2, sizeof(str_line2), "Time: %02d", duration/10);
+	lcd_center_text(1, str_line2);
+}
+
+void fsm_manual_run() {
+	switch(MODE) {
+		case MODE_2:
+			displayDuration(MODE_2, tempDuration);
+
+			if (isButtonPressed(0) == 1) {
+				tempDuration = YELLOW_DURATION;
+				changeMode(MODE_3);
+			}
+
+			if (isButtonPressed(1) == 1) {
+				tempDuration++;
+				if (tempDuration > 99) tempDuration = 1;
+			}
+
+			if (isButtonPressed(2) == 1) {
+				new_RED = tempDuration;
+			}
+
+			TrafficBlink(RED);
+			break;
+		case MODE_3:
+			displayDuration(MODE_3, tempDuration);
+
+			if (isButtonPressed(0) == 1) {
+				tempDuration = GREEN_DURATION;
+				changeMode(MODE_4);
+			}
+
+			if (isButtonPressed(1) == 1) {
+				tempDuration++;
+				if (tempDuration > 99) tempDuration = 1;
+			}
+
+			if (isButtonPressed(2) == 1) {
+				new_YELLOW = tempDuration;
+			}
+
+			TrafficBlink(YELLOW);
+			break;
+		case MODE_4:
+			displayDuration(MODE_4, tempDuration);
+
+			if (isButtonPressed(0) == 1) {
+				LED_STATE[0] = INIT_STATE;
+				LED_STATE[1] = INIT_STATE;
+			}
+
+			if (isButtonPressed(1) == 1) {
+				tempDuration++;
+				if (tempDuration > 99) tempDuration = 1;
+			}
+
+			if (isButtonPressed(2) == 1) {
+				new_GREEN = tempDuration;
+			}
+
+			TrafficBlink(GREEN);
+			break;
+		default:
+			break;
+	}
+}
+

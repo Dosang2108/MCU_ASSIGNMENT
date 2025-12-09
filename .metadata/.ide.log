@@ -2170,3 +2170,125 @@
 2025-12-09 11:43:10,766 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 1569mS.
 2025-12-09 11:43:10,767 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 1mS.
 2025-12-09 11:43:10,767 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2025-12-09 12:24:45,301 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 1004198800 Bytes (1073741824)
+2025-12-09 12:24:46,768 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 978897552 Bytes (1073741824)
+2025-12-09 12:24:48,390 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 1009600336 Bytes (1073741824)
+2025-12-09 12:24:48,583 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2025-12-09 12:24:48,583 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: USART
+2025-12-09 12:24:48,583 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2025-12-09 12:24:48,583 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2025-12-09 12:24:48,584 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2025-12-09 12:24:48,584 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: I2C
+2025-12-09 12:24:48,584 [INFO] CodeGenerator:663 - code generatio: config db path: D:\STM32CubeIDE_1.7.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.3.0.202107141111\\db\
+2025-12-09 12:24:48,596 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-09 12:24:48,596 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-09 12:24:49,003 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp_save
+2025-12-09 12:24:49,095 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp
+2025-12-09 12:24:49,125 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp_save
+2025-12-09 12:24:49,182 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp
+2025-12-09 12:24:49,192 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_Analogue is not available in your config.xml file
+2025-12-09 12:24:49,192 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_DigitalFolter is not available in your config.xml file
+2025-12-09 12:24:49,289 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c_save
+2025-12-09 12:24:49,345 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c
+2025-12-09 12:24:49,348 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h_save
+2025-12-09 12:24:49,386 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h
+2025-12-09 12:24:49,397 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c_save
+2025-12-09 12:24:49,471 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c
+2025-12-09 12:24:49,474 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp_save
+2025-12-09 12:24:49,513 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp
+2025-12-09 12:24:49,529 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h_save
+2025-12-09 12:24:49,606 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h
+2025-12-09 12:24:49,661 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h_save
+2025-12-09 12:24:49,722 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h
+2025-12-09 12:24:49,734 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c_save
+2025-12-09 12:24:49,837 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c
+2025-12-09 12:24:50,519 [INFO] ProjectBuilder:2578 - Time for Copy HAL[1] : 72mS.
+2025-12-09 12:24:50,521 [INFO] ProjectBuilder:3622 - Project Generator version: 3.14.1
+2025-12-09 12:24:50,945 [INFO] ConfigFileManager:1271 - The Die is : DIE410
+2025-12-09 12:24:52,365 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 1844mS.
+2025-12-09 12:24:52,365 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2025-12-09 12:24:52,366 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2025-12-09 12:24:56,155 [INFO] NvicIntPanel:96 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-12-09 12:25:00,424 [INFO] NvicIntPanel:96 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-12-09 12:25:14,631 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 976214112 Bytes (1073741824)
+2025-12-09 12:25:15,810 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 1001915968 Bytes (1073741824)
+2025-12-09 12:25:16,750 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 984857544 Bytes (1073741824)
+2025-12-09 12:25:16,974 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2025-12-09 12:25:16,975 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: USART
+2025-12-09 12:25:16,975 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: TIM1_8F1
+2025-12-09 12:25:16,975 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2025-12-09 12:25:16,975 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2025-12-09 12:25:16,975 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2025-12-09 12:25:16,975 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: I2C
+2025-12-09 12:25:16,975 [INFO] CodeGenerator:663 - code generatio: config db path: D:\STM32CubeIDE_1.7.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.3.0.202107141111\\db\
+2025-12-09 12:25:16,978 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-09 12:25:16,978 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-09 12:25:17,381 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp_save
+2025-12-09 12:25:17,433 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp
+2025-12-09 12:25:17,454 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp_save
+2025-12-09 12:25:17,500 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp
+2025-12-09 12:25:17,505 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_Analogue is not available in your config.xml file
+2025-12-09 12:25:17,505 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_DigitalFolter is not available in your config.xml file
+2025-12-09 12:25:17,677 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c_save
+2025-12-09 12:25:17,730 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c
+2025-12-09 12:25:17,733 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h_save
+2025-12-09 12:25:17,777 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h
+2025-12-09 12:25:17,789 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c_save
+2025-12-09 12:25:17,853 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c
+2025-12-09 12:25:17,855 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp_save
+2025-12-09 12:25:17,898 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp
+2025-12-09 12:25:17,910 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h_save
+2025-12-09 12:25:17,973 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h
+2025-12-09 12:25:17,991 [WARN] IPConfigManager:3148 - IP not found : TIM
+2025-12-09 12:25:17,992 [WARN] CodeGenerator:3268 - IP not found : null
+2025-12-09 12:25:18,002 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h_save
+2025-12-09 12:25:18,040 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h
+2025-12-09 12:25:18,050 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c_save
+2025-12-09 12:25:18,153 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c
+2025-12-09 12:25:18,771 [INFO] ProjectBuilder:2578 - Time for Copy HAL[1] : 52mS.
+2025-12-09 12:25:18,773 [INFO] ProjectBuilder:3622 - Project Generator version: 3.14.1
+2025-12-09 12:25:19,176 [INFO] ConfigFileManager:1271 - The Die is : DIE410
+2025-12-09 12:25:20,491 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 1718mS.
+2025-12-09 12:25:20,492 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 1mS.
+2025-12-09 12:25:20,493 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 1mS.
+2025-12-09 12:27:34,044 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 997667312 Bytes (1073741824)
+2025-12-09 12:27:35,196 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 979562472 Bytes (1073741824)
+2025-12-09 12:27:37,153 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 983066792 Bytes (1073741824)
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: USART
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: TIM1_8F1
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2025-12-09 12:27:37,327 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: I2C
+2025-12-09 12:27:37,328 [INFO] CodeGenerator:663 - code generatio: config db path: D:\STM32CubeIDE_1.7.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.3.0.202107141111\\db\
+2025-12-09 12:27:37,330 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2025-12-09 12:27:37,330 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2025-12-09 12:27:37,699 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp_save
+2025-12-09 12:27:37,754 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\license.tmp
+2025-12-09 12:27:37,775 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp_save
+2025-12-09 12:27:37,824 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\gpio.tmp
+2025-12-09 12:27:37,835 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_Analogue is not available in your config.xml file
+2025-12-09 12:27:37,836 [ERROR] IPConfigManager:1513 - ERROR: the RefConfig I2C_DigitalFolter is not available in your config.xml file
+2025-12-09 12:27:37,984 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c_save
+2025-12-09 12:27:38,039 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_it.c
+2025-12-09 12:27:38,043 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h_save
+2025-12-09 12:27:38,084 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_it.h
+2025-12-09 12:27:38,097 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c_save
+2025-12-09 12:27:38,158 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\stm32f1xx_hal_msp.c
+2025-12-09 12:27:38,160 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp_save
+2025-12-09 12:27:38,190 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\MXTmpFiles\system.tmp
+2025-12-09 12:27:38,202 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h_save
+2025-12-09 12:27:38,268 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\stm32f1xx_hal_conf.h
+2025-12-09 12:27:38,293 [WARN] IPConfigManager:3148 - IP not found : TIM
+2025-12-09 12:27:38,294 [WARN] CodeGenerator:3268 - IP not found : null
+2025-12-09 12:27:38,308 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h_save
+2025-12-09 12:27:38,359 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Inc\main.h
+2025-12-09 12:27:38,372 [INFO] CodeEngine:239 - oldGeneratedFile, D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c_save
+2025-12-09 12:27:38,481 [INFO] CodeEngine:257 - Generated code: D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\Core\Src\main.c
+2025-12-09 12:27:39,100 [INFO] ProjectBuilder:2578 - Time for Copy HAL[1] : 50mS.
+2025-12-09 12:27:39,102 [INFO] ProjectBuilder:3622 - Project Generator version: 3.14.1
+2025-12-09 12:27:39,573 [INFO] ConfigFileManager:1271 - The Die is : DIE410
+2025-12-09 12:27:40,873 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 1771mS.
+2025-12-09 12:27:40,874 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2025-12-09 12:27:40,876 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.

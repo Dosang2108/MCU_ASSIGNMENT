@@ -8,7 +8,7 @@
 #ifndef INC_SOFTWARE_TIMER_H_
 #define INC_SOFTWARE_TIMER_H_
 
-#define tick 10
+#define TIMER_CYCLE 10
 #include"main.h"
 volatile int timerCounter [4];
 volatile int timer_flag [4];

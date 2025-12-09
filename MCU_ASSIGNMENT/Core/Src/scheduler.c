@@ -37,23 +37,33 @@ void SCH_Update(){
 		tick++;
 }
 
-int runMe(uint8_t tick, uint8_t Period){
-	if(tick-Period==0) return 1;
-	return 0;
+// scheduler.c
+
+// 1. Sửa kiểu dữ liệu tham số giống với khai báo trong struct Task
+// 2. Đổi logic từ == sang >= để tránh trôi task (miss deadline)
+int runMe(uint64_t current_tick, uint32_t next_run){
+    if(current_tick >= next_run) {
+        return 1;
+    }
+    return 0;
 }
 
+// Trong hàm SCH_Dispatch_Tasks, gọi lại cho đúng:
 void SCH_Dispatch_Tasks(void){
-	for(int i=0; i< curr_task; i++){
-		if(runMe(tick,pTask[i].NEXT_RUN)){
-			(*pTask[i].pFunction)();
-			if(pTask[i].PERIOD==0){
-				SCH_Delete_Task(i);
-			}
-			else {
-				pTask[i].NEXT_RUN= tick+ pTask[i].PERIOD;
-			}
-		}
-	}
+    for(int i=0; i< curr_task; i++){
+        // Truyền đúng biến tick toàn cục
+        if(runMe(tick, pTask[i].NEXT_RUN)){
+            (*pTask[i].pFunction)();
+
+            if(pTask[i].PERIOD==0){
+                SCH_Delete_Task(i);
+            }
+            else {
+                // Cập nhật thời gian chạy tiếp theo
+                pTask[i].NEXT_RUN = tick + pTask[i].PERIOD; // Cộng dồn từ tick hiện tại để tránh trôi
+            }
+        }
+    }
 }
 
 uint8_t SCH_Delete_Task(uint32_t taskID){
