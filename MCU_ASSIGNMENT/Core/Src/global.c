@@ -9,9 +9,9 @@
 
 int MODE = MODE_1;
 int LED_STATE[2] = {INIT_STATE, INIT_STATE};
-int LED_DURATION = 5;
-int YELLOW_DURATION = 2;
-int GREEN_DURATION = 3;
+int RED_DURATION = 50;
+int YELLOW_DURATION = 20;
+int GREEN_DURATION = 30;
 int tempDuration = 0;
 
 int new_RED = 5;

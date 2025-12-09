@@ -22,9 +22,9 @@ void fsm_automatic(int lane) {
 		int remaining_time = timerCounter[lane] / 100;
 		char str[16];
 
-		lcd_gotoxy(0, lane);
-		snprintf(str, sizeof(str), "Lane %d: %02d", lane + 1, remaining_time);
-		lcd_write_string(str);
+//		lcd_gotoxy(0, lane);
+//		snprintf(str, sizeof(str), "Lane %d: %02d", lane + 1, remaining_time);
+//		lcd_write_string(str);
 	}
 
 	switch(LED_STATE[lane]) {

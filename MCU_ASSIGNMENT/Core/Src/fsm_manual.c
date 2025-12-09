@@ -95,7 +95,7 @@ void fsm_manual_run() {
 				new_RED = tempDuration;
 			}
 
-			blink_traffic_light(RED);
+			TrafficBlink(RED);
 			break;
 		case MODE_3:
 			displayDuration(MODE_3, tempDuration);
@@ -114,7 +114,7 @@ void fsm_manual_run() {
 				new_YELLOW = tempDuration;
 			}
 
-			blink_traffic_light(YELLOW);
+			TrafficBlink(YELLOW);
 			break;
 		case MODE_4:
 			displayDuration(MODE_4, tempDuration);
@@ -133,7 +133,7 @@ void fsm_manual_run() {
 				new_GREEN = tempDuration;
 			}
 
-			blink_traffic_light(GREEN);
+			TrafficBlink(GREEN);
 			break;
 		default:
 			break;

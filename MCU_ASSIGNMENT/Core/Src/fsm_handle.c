@@ -21,14 +21,14 @@ void lcd_center_text1(int row, char *str) {
 }
 
 void displayHandleInfo() {
-	if (handle_pattern == 0) {
-		lcd_center_text1(0, "Lane 0: RED");
-		lcd_center_text1(1, "Lane 1: GREEN");
-	}
-	else {
-		lcd_center_text1(0, "Lane 0: GREEN");
-		lcd_center_text1(1, "Lane 1: RED");
-	}
+//	if (handle_pattern == 0) {
+//		lcd_center_text1(0, "Lane 0: RED");
+//		lcd_center_text1(1, "Lane 1: GREEN");
+//	}
+//	else {
+//		lcd_center_text1(0, "Lane 0: GREEN");
+//		lcd_center_text1(1, "Lane 1: RED");
+//	}
 }
 
 void fsm_handle_run(void) {

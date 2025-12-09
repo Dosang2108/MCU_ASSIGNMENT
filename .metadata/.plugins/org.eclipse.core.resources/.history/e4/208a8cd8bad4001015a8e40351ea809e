@@ -1,0 +1,37 @@
+/*
+ * global.h
+ *
+ *  Created on: Dec 6, 2025
+ *      Author: Sang
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#include "main.h"
+
+#define INIT_STATE			10
+#define RED_STATE			11
+#define YELLOW_STATE		12
+#define GREEN_STATE			13
+
+#define MODE_1				1
+#define MODE_2				2
+#define MODE_3				3
+#define MODE_4				4
+#define MODE_HANDLE			5
+
+extern int MODE;
+extern int LED_STATE[2];
+extern int RED;
+extern int YELLOW;
+extern int GREEN;
+extern int tempDuration;
+
+extern int new_RED;
+extern int new_YELLOW;
+extern int new_GREEN;
+extern int editing;
+extern int handle_pattern;
+
+#endif /* INC_GLOBAL_H_ */
