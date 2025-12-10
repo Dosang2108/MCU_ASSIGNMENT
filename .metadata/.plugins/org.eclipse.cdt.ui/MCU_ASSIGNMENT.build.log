@@ -1,0 +1,23 @@
+14:29:21 **** Incremental Build of configuration Debug for project MCU_ASSIGNMENT ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "MCU_ASSIGNMENT.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\MCU\MCU_ASSIGNMENT\MCU_ASSIGNMENT\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MCU_ASSIGNMENT.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MCU_ASSIGNMENT.elf
+ 
+arm-none-eabi-size   MCU_ASSIGNMENT.elf 
+arm-none-eabi-objdump -h -S  MCU_ASSIGNMENT.elf  > "MCU_ASSIGNMENT.list"
+arm-none-eabi-objcopy  -O ihex  MCU_ASSIGNMENT.elf  "MCU_ASSIGNMENT.hex"
+   text	   data	    bss	    dec	    hex	filename
+   9600	     24	   2208	  11832	   2e38	MCU_ASSIGNMENT.elf
+arm-none-eabi-objcopy  -O binary  MCU_ASSIGNMENT.elf  "MCU_ASSIGNMENT.bin"
+Finished building: default.size.stdout
+ 
+Finished building: MCU_ASSIGNMENT.hex
+Finished building: MCU_ASSIGNMENT.bin
+ 
+Finished building: MCU_ASSIGNMENT.list
+ 
+ 
+
+14:29:22 Build Finished. 0 errors, 0 warnings. (took 863ms)
+

@@ -1,0 +1,4 @@
+task.c:10:6:TASK_LED_BLINK	8	static
+task.c:14:6:TASK_ScanButtons	16	static
+task.c:19:6:TASK_SoftwareTimer	8	static
+task.c:22:6:TASK_FSM	8	static

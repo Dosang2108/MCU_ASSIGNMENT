@@ -1,0 +1,26 @@
+/*
+ * task.c
+ *
+ *  Created on: Dec 6, 2025
+ *      Author: Sang
+ */
+
+#include "task.h"
+
+void TASK_LED_BLINK(void){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+}
+
+void TASK_ScanButtons(void) {
+    for (int i = 0; i < 4; ++i) {
+        getKeyInput(i);
+    }
+}
+void TASK_SoftwareTimer(void) {
+    timerRun();
+}
+void TASK_FSM(void) {
+    fsm_automatic_run();
+    fsm_manual_run();
+    fsm_handle_run();
+}
