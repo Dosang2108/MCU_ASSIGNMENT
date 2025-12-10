@@ -7,8 +7,8 @@
 
 #include "software_timer.h"
 
-volatile int timerCounter[4] = {0,0,0,0};
-volatile int timer_flag[4]   = {0,0,0,0};
+volatile int timerCounter[5] = {0,0,0,0,0};
+volatile int timer_flag[5]   = {0,0,0,0,0};
 
 void setTimer(int num, int duration){
 	timerCounter[num] = duration/TIMER_CYCLE;
@@ -38,6 +38,12 @@ void timerRun(){
 		timerCounter[3]--;
 		if(timerCounter[3] <= 0){
 			timer_flag[3] = 1;
+		}
+	}
+	if(timerCounter[4] > 0){
+		timerCounter[4]--;
+		if(timerCounter[4] <= 0){
+			timer_flag[4] = 1;
 		}
 	}
 }

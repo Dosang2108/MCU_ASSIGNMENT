@@ -10,7 +10,7 @@
 
 #include "i2c.h"
 #include "stdio.h"
-
+#include <string.h>
 void LCD_cursor(char on);
 void lcd_gotoxy(unsigned char x, unsigned char y);
 void lcd_init(uint8_t addr);
@@ -19,6 +19,6 @@ void lcd_write_char(int s);
 void lcd_write_string(char *s);
 void ledON(void);
 void ledOFF(void);
-
+void lcd_center_text(int row, char *str);
 
 #endif /* INC_LCD_I2C_H_ */

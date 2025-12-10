@@ -1,0 +1,19 @@
+#ifndef INC_BUTTON_H_
+#define INC_BUTTON_H_
+
+#include "main.h"
+
+#define NORMAL_STATE GPIO_PIN_SET
+#define PRESSED_STATE GPIO_PIN_RESET
+
+// Thời gian nhấn giữ để bắt đầu lặp lại (300 * 10ms = 3000ms = 3 giây)
+#define LONG_PRESS_TIME 300
+
+// Chu kỳ lặp lại sau khi đã nhấn giữ (20 * 10ms = 200ms)
+#define AUTO_REPEAT_TIME 20
+
+void button_init(void);
+int isButtonPressed(int button);
+void getKeyInput(int button);
+
+#endif /* INC_BUTTON_H_ */

@@ -11,8 +11,8 @@
 #define TIMER_CYCLE 10
 
 #include"main.h"
-volatile int timerCounter [4];
-volatile int timer_flag [4];
+extern volatile int timerCounter [5];
+extern volatile int timer_flag [5];
 
 void setTimer(int num, int duration);
 

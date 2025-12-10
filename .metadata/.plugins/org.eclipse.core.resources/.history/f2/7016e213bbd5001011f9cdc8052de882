@@ -1,0 +1,164 @@
+/*
+ * fsm_handle.c
+ *
+ * Created on: Dec 6, 2025
+ * Author: Sang
+ */
+
+#include "fsm_handle.h"
+#include <string.h>
+#include <stdio.h>
+
+// --- ĐỊNH NGHĨA CÁC TRẠNG THÁI CHO FSM HANDLE ---
+#define HANDLE_INIT        0
+#define HANDLE_IDLE        1
+#define HANDLE_WAIT_YELLOW 2
+
+// Biến lưu trạng thái hiện tại của FSM Handle
+static int handle_state = HANDLE_INIT;
+
+// Hàm hỗ trợ hiển thị LCD căn giữa
+void lcd_center_text1(int row, char *str) {
+    int len = strlen(str);
+    int padding = 0;
+    if (len < 16) {
+        padding = (16 - len) / 2;
+    }
+    lcd_gotoxy(padding, row);
+    lcd_write_string(str);
+}
+
+// Hàm hiển thị thông tin dựa trên trạng thái FSM
+void displayHandleInfo() {
+    char str[16];
+
+    // Nếu đang trong trạng thái chờ đèn vàng (Transition)
+    if (handle_state == HANDLE_WAIT_YELLOW) {
+        int current_timer = timerCounter[2];
+
+        // Tính toán đếm ngược làm tròn lên: (299 -> 3, 1 -> 1)
+        int time_display = 0;
+        if(current_timer > 0) {
+             time_display = (current_timer - 1) / 100 + 1;
+        }
+
+        lcd_center_text1(0, "   WARNING!   ");
+        snprintf(str, sizeof(str), "YELLOW TIME: %d", time_display);
+        lcd_center_text1(1, str);
+    }
+    // Nếu đang ở trạng thái ổn định (IDLE) hoặc INIT
+    else {
+        if (handle_pattern == 0) {
+            // Pattern 0: Lane 0 ĐỎ - Lane 1 XANH
+            lcd_gotoxy(0, 0);
+            lcd_write_string("L0:RED     MODE");
+            lcd_gotoxy(0, 1);
+            lcd_write_string("L1:GREEN HANDLE");
+        }
+        else {
+            // Pattern 1: Lane 0 XANH - Lane 1 ĐỎ
+            lcd_gotoxy(0, 0);
+            lcd_write_string("L0:GREEN   MODE");
+            lcd_gotoxy(0, 1);
+            lcd_write_string("L1:RED   HANDLE");
+        }
+    }
+}
+
+// Hàm set đèn cho trạng thái ổn định (Xanh/Đỏ)
+void handle_apply_stable_state(void) {
+    if (handle_pattern == 0) {
+        TrafficLight1Control(RED);
+        TrafficLight2Control(GREEN);
+    }
+    else {
+        TrafficLight1Control(GREEN);
+        TrafficLight2Control(RED);
+    }
+}
+
+// Hàm điều khiển chính của Handle Mode
+void fsm_handle_run(void) {
+    // Nếu không phải MODE HANDLE thì reset trạng thái về INIT và thoát
+    if (MODE != MODE_HANDLE) {
+        handle_state = HANDLE_INIT;
+        return;
+    }
+
+    // Hiển thị thông tin liên tục
+    displayHandleInfo();
+
+    // --- LOGIC MÁY TRẠNG THÁI ---
+    switch (handle_state) {
+
+        // 1. TRẠNG THÁI KHỞI TẠO
+        case HANDLE_INIT:
+            handle_apply_stable_state();
+            handle_state = HANDLE_IDLE; // Chuyển ngay sang IDLE
+            break;
+
+        // 2. TRẠNG THÁI ỔN ĐỊNH (CHỜ NÚT BẤM)
+        case HANDLE_IDLE:
+            // Nút 3: Thoát chế độ
+            if (isButtonPressed(3) == 1) {
+                TrafficLight1Control(OFF_STATE);
+                TrafficLight2Control(OFF_STATE);
+                LED_STATE[0] = INIT_STATE;
+                LED_STATE[1] = INIT_STATE;
+                changeMode(MODE_1);
+                handle_state = HANDLE_INIT; // Reset về INIT cho lần sau
+                return;
+            }
+
+            // Nút 1: Muốn chuyển về Pattern 0 (L0 Đỏ, L1 Xanh)
+            if (isButtonPressed(1) == 1) {
+                if (handle_pattern == 1) { // Chỉ xử lý nếu đang ở Pattern 1 (ngược lại)
+                    // Bật đèn Vàng chuẩn bị chuyển
+                    TrafficLight1Control(YELLOW); // L0 Xanh -> Vàng
+                    TrafficLight2Control(RED);    // L1 vẫn Đỏ
+
+                    setTimer(2, 3000);   // Timer 3 giây
+                    handle_pattern = 0;  // Set mục tiêu về Pattern 0
+                    handle_state = HANDLE_WAIT_YELLOW; // Chuyển trạng thái
+                }
+            }
+
+            // Nút 2: Muốn chuyển về Pattern 1 (L0 Xanh, L1 Đỏ)
+            if (isButtonPressed(2) == 1) {
+                if (handle_pattern == 0) { // Chỉ xử lý nếu đang ở Pattern 0
+                    // Bật đèn Vàng chuẩn bị chuyển
+                    TrafficLight1Control(RED);    // L0 vẫn Đỏ
+                    TrafficLight2Control(YELLOW); // L1 Xanh -> Vàng
+
+                    setTimer(2, 3000);   // Timer 3 giây
+                    handle_pattern = 1;  // Set mục tiêu về Pattern 1
+                    handle_state = HANDLE_WAIT_YELLOW; // Chuyển trạng thái
+                }
+            }
+            break;
+
+        // 3. TRẠNG THÁI CHỜ ĐÈN VÀNG (ĐẾM NGƯỢC)
+        case HANDLE_WAIT_YELLOW:
+            // Nút 3: Cho phép thoát khẩn cấp ngay cả khi đang đếm
+            if (isButtonPressed(3) == 1) {
+                TrafficLight1Control(OFF_STATE);
+                TrafficLight2Control(OFF_STATE);
+                LED_STATE[0] = INIT_STATE;
+                LED_STATE[1] = INIT_STATE;
+                changeMode(MODE_1);
+                handle_state = HANDLE_INIT;
+                return;
+            }
+
+            // Kiểm tra Timer hết giờ chưa
+            if (timer_flag[2] == 1) {
+                handle_apply_stable_state(); // Áp dụng đèn Xanh/Đỏ chính thức
+                handle_state = HANDLE_IDLE;  // Quay về trạng thái ổn định
+            }
+            break;
+
+        default:
+            handle_state = HANDLE_INIT;
+            break;
+    }
+}

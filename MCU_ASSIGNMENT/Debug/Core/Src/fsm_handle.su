@@ -1,3 +1,4 @@
-fsm_handle.c:13:6:lcd_center_text1	24	static
-fsm_handle.c:23:6:displayHandleInfo	8	static
-fsm_handle.c:34:6:fsm_handle_run	8	static
+fsm_handle.c:20:6:lcd_center_text1	24	static
+fsm_handle.c:30:6:displayHandleInfo	32	static
+fsm_handle.c:78:6:handle_apply_final_state	8	static
+fsm_handle.c:89:6:fsm_handle_run	8	static

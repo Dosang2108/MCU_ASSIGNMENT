@@ -13,9 +13,12 @@
 #define NORMAL_STATE GPIO_PIN_SET
 #define PRESSED_STATE GPIO_PIN_RESET
 
-int isButtonPressed();
+#define LONG_PRESS_TIME 30
 
-void subKeyProcess(int button);
-void getKeyInput();
+#define AUTO_REPEAT_TIME 2
+
+void button_init(void);
+int isButtonPressed(int button);
+void getKeyInput(int button);
 
 #endif /* INC_BUTTON_H_ */

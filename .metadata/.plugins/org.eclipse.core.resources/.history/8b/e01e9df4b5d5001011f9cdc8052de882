@@ -1,0 +1,130 @@
+/*
+ * fsm_handle.c
+ *
+ * Created on: Dec 6, 2025
+ * Author: Sang
+ */
+
+#include "fsm_handle.h"
+#include <string.h>
+
+// Biến trạng thái để biết đang trong quá trình chuyển đèn vàng hay không
+static int is_transitioning = 0;
+
+void lcd_center_text1(int row, char *str) {
+    int len = strlen(str);
+    int padding = 0;
+    if (len < 16) {
+        padding = (16 - len) / 2;
+    }
+    lcd_gotoxy(padding, row);
+    lcd_write_string(str);
+}
+
+void displayHandleInfo() {
+    // Hiển thị thông tin trạng thái MỤC TIÊU hoặc HIỆN TẠI
+    if (is_transitioning) {
+        //lcd_center_text1(1, " YELLOW TIME  ");
+        int current_timer = timerCounter[2];
+
+                // 2. Làm tròn lên để hiển thị đúng (299 -> 3, 199 -> 2, ...)
+                // Công thức: (time - 1) / 100 + 1
+                int time_display = 0;
+                if(current_timer > 0) {
+                     time_display = (current_timer - 1) / 100 + 1;
+                }
+
+                char str[16];
+                lcd_center_text1(0, "   WARNING!   ");
+
+                // Hiển thị: "YELLOW TIME: 3"
+                snprintf(str, sizeof(str), "YELLOW TIME: %d", time_display);
+                lcd_center_text1(1, str);
+
+    }
+    else if (handle_pattern == 0) {
+//        lcd_center_text1(0, "Lane 0: RED");
+//        lcd_center_text1(1, "Lane 1: GREEN");
+    	lcd_gotoxy(0, 0);
+    	lcd_write_string("L0:RED     MODE");
+    	lcd_gotoxy(0, 1);
+    	lcd_write_string("L1:GREEN HANDLE");
+
+    }
+    else {
+    	lcd_gotoxy(0, 1);
+		lcd_write_string("L0:RED     MODE");
+		lcd_gotoxy(0, 0);
+		lcd_write_string("L1:GREEN HANDLE");
+    }
+}
+
+// Hàm áp dụng trạng thái đèn cuối cùng (Xanh/Đỏ)
+void handle_apply_final_state(void) {
+    if (handle_pattern == 0) {
+        TrafficLight1Control(RED);
+        TrafficLight2Control(GREEN);
+    }
+    else {
+        TrafficLight1Control(GREEN);
+        TrafficLight2Control(RED);
+    }
+}
+
+void fsm_handle_run(void) {
+    if (MODE == MODE_HANDLE) {
+
+        displayHandleInfo();
+
+        if (isButtonPressed(3) == 1) {
+            TrafficLight1Control(OFF_STATE);
+            TrafficLight2Control(OFF_STATE);
+            LED_STATE[0] = INIT_STATE;
+            LED_STATE[1] = INIT_STATE;
+            is_transitioning = 0; // Reset trạng thái
+            changeMode(MODE_1);
+            return;
+        }
+
+        if (isButtonPressed(1) == 1) {
+            if (handle_pattern == 1 && is_transitioning == 0) {
+                // Bước 1: Lane 0 đang Xanh -> Chuyển sang Vàng
+                TrafficLight1Control(YELLOW);
+                TrafficLight2Control(RED);
+                setTimer(2, 3000);
+                handle_pattern = 0;
+                is_transitioning = 1;
+            }
+            else if (handle_pattern == 0 && is_transitioning == 0) {
+                 handle_apply_final_state();
+            }
+        }
+
+        // --- NÚT 2: Chuyển sang Lane 0 XANH, Lane 1 ĐỎ ---
+        if (isButtonPressed(2) == 1) {
+
+            // Chỉ xử lý nếu đang ở pattern ngược lại và không trong quá trình chuyển
+            if (handle_pattern == 0 && is_transitioning == 0) {
+                // Bước 1: Lane 1 đang Xanh -> Chuyển sang Vàng
+                TrafficLight1Control(RED); // Lane 0 vẫn giữ Đỏ
+                TrafficLight2Control(YELLOW);
+                setTimer(2, 3000);
+
+
+                // Bước 3: Cập nhật trạng thái
+                handle_pattern = 1; // Đặt mục tiêu là Pattern 1
+                is_transitioning = 1; // Đánh dấu đang chuyển
+            }
+            // Nếu mới vào mode (chưa có trạng thái nào), set luôn
+            else if (handle_pattern == 1 && is_transitioning == 0) {
+                 handle_apply_final_state();
+            }
+        }
+        if (is_transitioning == 1) {
+            if (timer_flag[2] == 1) {
+                handle_apply_final_state();
+                is_transitioning = 0; // Kết thúc quá trình chuyển
+            }
+        }
+    }
+}

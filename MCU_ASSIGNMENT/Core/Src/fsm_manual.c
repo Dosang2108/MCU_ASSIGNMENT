@@ -1,8 +1,8 @@
 /*
  * fsm_manual.c
  *
- *  Created on: Dec 6, 2025
- *      Author: Sang
+ * Created on: Dec 6, 2025
+ * Author: Sang
  */
 
 #include "fsm_automatic.h"
@@ -10,16 +10,6 @@
 #include "string.h"
 
 static int toggle_state = 0;
-
-void lcd_center_text(int row, char *str) {
-    int len = strlen(str);
-    int padding = 0;
-    if (len < 16) {
-        padding = (16 - len) / 2;
-    }
-    lcd_gotoxy(padding, row);
-    lcd_write_string(str);
-}
 
 void handle_apply_initial(void) {
 	if (handle_pattern == 0) {
@@ -49,7 +39,8 @@ void changeMode(int mode) {
 
 	lcd_clear();
 	MODE = mode;
-	setTimer(2, 25);
+    setTimer(3, BLINK_TIME);
+
 	toggle_state = 0;
 }
 
@@ -66,18 +57,28 @@ void end_edit_session_and_maybe_commit(void) {
 void displayDuration(int mode, int duration) {
 	char str_line2[16];
 	switch(mode) {
-		case MODE_2: lcd_center_text(0, "MODE 02"); break;
-		case MODE_3: lcd_center_text(0, "MODE 03"); break;
-		case MODE_4: lcd_center_text(0, "MODE 04"); break;
-		default: lcd_center_text(0, "MODE UNKNOWN"); break;
+		case MODE_2:
+			lcd_gotoxy(0, 0);
+			lcd_write_string("RED     |MODE2");
+			break;
+		case MODE_3:
+			lcd_gotoxy(0, 0);
+			lcd_write_string("YELLOW  |MODE3");
+			break;
+		case MODE_4:
+			lcd_gotoxy(0, 0);
+			lcd_write_string("GREEN   |MODE4");
+			break;
+		default: lcd_clear(); break;
 	}
 
-	snprintf(str_line2, sizeof(str_line2), "Time: %02d", duration);
-	lcd_center_text(1, str_line2);
+	snprintf(str_line2, sizeof(str_line2), "Time:%02d |MANUAL", duration);
+	lcd_gotoxy(0, 1);
+	lcd_write_string(str_line2);
 }
 
 void fsm_manual_run() {
-	switch(MODE) {
+    switch(MODE) {
 		case MODE_2:
 			displayDuration(MODE_2, tempDuration);
 
@@ -94,8 +95,13 @@ void fsm_manual_run() {
 			if (isButtonPressed(2) == 1) {
 				new_RED = tempDuration;
 			}
-
-			TrafficBlink(RED);
+			if (isButtonPressed(3) == 1) {
+				tempDuration--;
+				if (tempDuration < 1) tempDuration = 99;
+			}
+			if(timer_flag[3]){
+				TrafficBlink(RED);
+			}
 			break;
 		case MODE_3:
 			displayDuration(MODE_3, tempDuration);
@@ -113,15 +119,21 @@ void fsm_manual_run() {
 			if (isButtonPressed(2) == 1) {
 				new_YELLOW = tempDuration;
 			}
-
-			TrafficBlink(YELLOW);
+			if (isButtonPressed(3) == 1) {
+				tempDuration--;
+				if (tempDuration < 1) tempDuration = 99;
+			}
+			if(timer_flag[3]){
+				TrafficBlink(YELLOW);
+			}
 			break;
 		case MODE_4:
 			displayDuration(MODE_4, tempDuration);
-
 			if (isButtonPressed(0) == 1) {
+				end_edit_session_and_maybe_commit();
 				LED_STATE[0] = INIT_STATE;
 				LED_STATE[1] = INIT_STATE;
+				changeMode(MODE_1);
 			}
 
 			if (isButtonPressed(1) == 1) {
@@ -132,8 +144,13 @@ void fsm_manual_run() {
 			if (isButtonPressed(2) == 1) {
 				new_GREEN = tempDuration;
 			}
-
-			TrafficBlink(GREEN);
+			if (isButtonPressed(3) == 1) {
+				tempDuration--;
+				if (tempDuration < 1) tempDuration = 99;
+			}
+			if(timer_flag[3]){
+				TrafficBlink(GREEN);
+			}
 			break;
 		default:
 			break;

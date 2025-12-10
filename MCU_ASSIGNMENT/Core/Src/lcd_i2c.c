@@ -5,7 +5,7 @@
  *      Author: Lolle
  */
 #include "lcd_i2c.h"
-
+#include "main.h"
 
 uint8_t _backlightval;
 uint8_t LCDI2C_ADDR;
@@ -137,3 +137,14 @@ void lcd_init(uint8_t addr)
    LCD_Send1Byte(0x06);
    lcd_gotoxy(0,0);
 }
+void lcd_center_text(int row, char *str) {
+    int len = strlen(str);
+    int padding = 0;
+    if (len < 16) {
+        padding = (16 - len) / 2;
+    }
+    lcd_gotoxy(padding, row);
+    lcd_write_string(str);
+}
+
+

@@ -17,53 +17,59 @@ void setTrafficLight(int lane, int state) {
 	}
 }
 
+/* */
 void fsm_automatic(int lane) {
-	if (timerCounter[lane] % 100 == 0) {
-		int remaining_time = timerCounter[lane] / 100;
-		char str[16];
+    // 1. XỬ LÝ CHUYỂN TRẠNG THÁI (Logic FSM giữ nguyên, đưa lên đầu)
+    switch(LED_STATE[lane]) {
+        case INIT_STATE:
+            if (lane == 0) {
+                LED_STATE[lane] = RED_STATE;
+                setTrafficLight(lane, RED);
+                setTimer(lane, RED_DURATION * 1000);
+            }
+            else {
+                LED_STATE[lane] = GREEN_STATE;
+                setTrafficLight(lane, GREEN);
+                setTimer(lane, GREEN_DURATION * 1000);
+            }
+            break;
+        case RED_STATE:
+            setTrafficLight(lane, RED);
+            if (timer_flag[lane] == 1) {
+                LED_STATE[lane] = GREEN_STATE;
+                setTimer(lane, GREEN_DURATION * 1000);
+            }
+            break;
+        case GREEN_STATE:
+            setTrafficLight(lane, GREEN);
+            if (timer_flag[lane] == 1) {
+                LED_STATE[lane] = YELLOW_STATE;
+                setTimer(lane, YELLOW_DURATION * 1000);
+            }
+            break;
+        case YELLOW_STATE:
+            setTrafficLight(lane, YELLOW);
+            if (timer_flag[lane] == 1) {
+                LED_STATE[lane] = RED_STATE;
+                setTimer(lane, RED_DURATION * 1000);
+            }
+            break;
+        default:
+            break;
+    }
 
-		lcd_gotoxy(0, lane);
-		snprintf(str, sizeof(str), "Lane %d: %02d", lane + 1, remaining_time);
-		lcd_write_string(str);
-	}
+    if (timerCounter[lane] % 100 == 0 || timerCounter[lane] > (timerCounter[lane]/100)*100 + 95) {
+        // Mẹo: timerCounter / 100 + 1 giúp làm tròn lên (499 -> 5, 1 -> 1)
+        int time_display = timerCounter[lane] / 100 + 1;
 
-	switch(LED_STATE[lane]) {
-		case INIT_STATE:
-			if (lane == 0) {
-				LED_STATE[lane] = RED_STATE;
-				setTrafficLight(lane, RED);
-				setTimer(lane, RED_DURATION * 1000);
-			}
-			else {
-				LED_STATE[lane] = GREEN_STATE;
-				setTrafficLight(lane, GREEN);
-				setTimer(lane, GREEN_DURATION * 1000);
-			}
-			break;
-		case RED_STATE:
-			setTrafficLight(lane, RED);
-			if (timer_flag[lane] == 1) {
-				LED_STATE[lane] = GREEN_STATE;
-				setTimer(lane, GREEN_DURATION * 1000);
-			}
-			break;
-		case GREEN_STATE:
-			setTrafficLight(lane, GREEN);
-			if (timer_flag[lane] == 1) {
-				LED_STATE[lane] = YELLOW_STATE;
-				setTimer(lane, YELLOW_DURATION * 1000);
-			}
-			break;
-		case YELLOW_STATE:
-			setTrafficLight(lane, YELLOW);
-			if (timer_flag[lane] == 1) {
-				LED_STATE[lane] = RED_STATE;
-				setTimer(lane, RED_DURATION * 1000);
-			}
-			break;
-		default:
-			break;
-	}
+        char str[16];
+        lcd_gotoxy(0, lane);
+        if(lane==0)
+        	snprintf(str, sizeof(str), "L%d:%02d      MODE", lane + 1, time_display);
+        else
+        	snprintf(str, sizeof(str), "L%d:%02d      AUTO", lane + 1, time_display);
+        lcd_write_string(str);
+    }
 }
 
 void fsm_automatic_run() {
@@ -72,14 +78,17 @@ void fsm_automatic_run() {
 		fsm_automatic(1);
 
 		if (isButtonPressed(0) == 1) {
+			start_edit_session();
 			tempDuration = RED_DURATION;
 			MODE = MODE_2;
+			lcd_clear();
+			setTimer(3, BLINK_TIME);
 		}
 
 		if (isButtonPressed(3) == 1) {
 			MODE = MODE_HANDLE;
 			lcd_clear();
-			setTimer(2, 25);
+			setTimer(2, 3000);
 		}
 	}
 }

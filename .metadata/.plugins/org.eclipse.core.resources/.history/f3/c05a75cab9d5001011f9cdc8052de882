@@ -1,0 +1,161 @@
+/*
+ * fsm_manual.c
+ *
+ * Created on: Dec 6, 2025
+ * Author: Sang
+ */
+
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
+#include "string.h"
+
+static int toggle_state = 0;
+
+void handle_apply_initial(void) {
+	if (handle_pattern == 0) {
+		TrafficLight1Control(RED);
+		TrafficLight2Control(GREEN);
+	}
+	else {
+		TrafficLight1Control(GREEN);
+		TrafficLight2Control(RED);
+	}
+}
+
+int is_valid_combo(int red, int green, int yellow) {
+   return ((red - green) == yellow);
+}
+
+void start_edit_session(void) {
+	new_RED    = RED_DURATION;
+	new_YELLOW = YELLOW_DURATION;
+	new_GREEN  = GREEN_DURATION;
+	editing    = 1;
+}
+
+void changeMode(int mode) {
+	TrafficLight1Control(OFF_STATE);
+	TrafficLight2Control(OFF_STATE);
+
+	lcd_clear();
+	MODE = mode;
+    setTimer(3, BLINK_TIME);
+
+	toggle_state = 0;
+}
+
+void end_edit_session_and_maybe_commit(void) {
+	if (!editing) return;
+	if (is_valid_combo(new_RED, new_GREEN, new_YELLOW)) {
+		RED_DURATION    = new_RED;
+		YELLOW_DURATION = new_YELLOW;
+		GREEN_DURATION  = new_GREEN;
+	}
+	editing = 0;
+}
+
+void displayDuration(int mode, int duration) {
+	char str_line2[16];
+	switch(mode) {
+		case MODE_2:
+			lcd_gotoxy(0, 0);
+			lcd_write_string("RED     |MODE2");
+			break;
+		case MODE_3:
+			lcd_gotoxy(0, 0);
+			lcd_write_string("YELLOW  |MODE3");
+			break;
+		case MODE_4:
+			lcd_gotoxy(0, 0);
+			lcd_write_string("GREEN   |MODE4");
+			break;
+		default: lcd_clear(); break;
+	}
+
+	snprintf(str_line2, sizeof(str_line2), "Time:%02d |MANUAL", duration);
+	lcd_gotoxy(0, 1);
+	lcd_write_string(str_line2);
+}
+
+void fsm_manual_run() {
+    switch(MODE) {
+		case MODE_2:
+			lcd_clear();
+			displayDuration(MODE_2, tempDuration);
+
+			if (isButtonPressed(0) == 1) {
+				tempDuration = YELLOW_DURATION;
+				changeMode(MODE_3);
+			}
+
+			if (isButtonPressed(1) == 1) {
+				tempDuration++;
+				if (tempDuration > 99) tempDuration = 1;
+			}
+
+			if (isButtonPressed(2) == 1) {
+				new_RED = tempDuration;
+			}
+			if (isButtonPressed(3) == 1) {
+				tempDuration--;
+				if (tempDuration < 1) tempDuration = 99;
+			}
+			if(timer_flag[3]){
+				TrafficBlink(RED);
+			}
+			break;
+		case MODE_3:
+			lcd_clear();
+			displayDuration(MODE_3, tempDuration);
+
+			if (isButtonPressed(0) == 1) {
+				tempDuration = GREEN_DURATION;
+				changeMode(MODE_4);
+			}
+
+			if (isButtonPressed(1) == 1) {
+				tempDuration++;
+				if (tempDuration > 99) tempDuration = 1;
+			}
+
+			if (isButtonPressed(2) == 1) {
+				new_YELLOW = tempDuration;
+			}
+			if (isButtonPressed(3) == 1) {
+				tempDuration--;
+				if (tempDuration < 1) tempDuration = 99;
+			}
+			if(timer_flag[3]){
+				TrafficBlink(YELLOW);
+			}
+			break;
+		case MODE_4:
+			lcd_clear();
+			displayDuration(MODE_4, tempDuration);
+			if (isButtonPressed(0) == 1) {
+				end_edit_session_and_maybe_commit();
+				LED_STATE[0] = INIT_STATE;
+				LED_STATE[1] = INIT_STATE;
+				changeMode(MODE_1);
+			}
+
+			if (isButtonPressed(1) == 1) {
+				tempDuration++;
+				if (tempDuration > 99) tempDuration = 1;
+			}
+
+			if (isButtonPressed(2) == 1) {
+				new_GREEN = tempDuration;
+			}
+			if (isButtonPressed(3) == 1) {
+				tempDuration--;
+				if (tempDuration < 1) tempDuration = 99;
+			}
+			if(timer_flag[3]){
+				TrafficBlink(GREEN);
+			}
+			break;
+		default:
+			break;
+	}
+}

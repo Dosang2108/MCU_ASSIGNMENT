@@ -1,0 +1,84 @@
+/*
+ * button.c
+ *
+ *  Created on: Oct 13, 2025
+ *      Author: Sang
+ */
+
+#include "button.h"
+
+ int button_buffer[4] = {0, 0, 0, 0};
+ int button_long_press_flag[4] = {0, 0, 0, 0};
+ int button_long_press_counter[4] = {0, 0, 0, 0};
+GPIO_TypeDef *BUTTON_PORT[4] = {
+    BUTTON1_GPIO_Port, BUTTON2_GPIO_Port, BUTTON3_GPIO_Port, BUTTON4_GPIO_Port
+};
+uint16_t BUTTON_PIN[4] = {
+    BUTTON1_Pin,       BUTTON2_Pin,       BUTTON3_Pin,       BUTTON4_Pin
+};
+
+static int button_Register0[4] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
+static int button_Register1[4] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
+static int button_Register2[4] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
+static int button_Register3[4] = {NORMAL_STATE, NORMAL_STATE, NORMAL_STATE, NORMAL_STATE};
+
+void subKeyProcess(int button) {
+   button_buffer[button] = 1;
+}
+void button_init(void) {
+   for (int i = 0; i < 4; ++i) {
+        int v = HAL_GPIO_ReadPin(BUTTON_PORT[i], BUTTON_PIN[i]);
+        button_Register0[i] = v;
+        button_Register1[i] = v;
+        button_Register2[i] = v;
+        button_Register3[i] = v;
+        button_buffer[i]   = 0;
+    }
+}
+
+int isButtonLongPressed(int button) {
+    if (button < 0 || button >= 4) return 0;
+    if (button_long_press_flag[button] == 1) {
+        button_long_press_flag[button] = 0;
+        return 1;
+    }
+    return 0;
+}
+int isButtonPressed(int button) {
+  if (button < 0 || button >= 4) return 0;
+
+    if (button_buffer[button] == 1) {
+        button_buffer[button] = 0;
+        return 1;
+    }
+    return 0;
+}
+
+void getKeyInput(int button) {
+   if (button < 0 || button >= 4) return;
+
+   button_Register0[button] = button_Register1[button];
+   button_Register1[button] = button_Register2[button];
+   button_Register2[button] = HAL_GPIO_ReadPin(BUTTON_PORT[button], BUTTON_PIN[button]);
+   if ((button_Register0[button] == button_Register1[button]) &&
+        (button_Register1[button] == button_Register2[button]))
+   {
+        int stable_now = button_Register2[button];
+        if (button_Register3[button] != stable_now) {
+            button_Register3[button] = stable_now;
+            if (stable_now == PRESSED_STATE) {
+                subKeyProcess(button);
+                // Reset counter khi bắt đầu nhấn mới
+                button_long_press_counter[button] = 0;
+            }
+        }
+        if (stable_now == PRESSED_STATE) {
+             button_long_press_counter[button]++;
+            if (button_long_press_counter[button] == LONG_PRESS_TIME) {
+                button_long_press_flag[button] = 1;
+            }
+        } else {
+            button_long_press_counter[button] = 0;
+        }
+   }
+}

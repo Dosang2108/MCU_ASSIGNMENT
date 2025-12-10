@@ -70,18 +70,6 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t I2C_Check_Any_Device(void)
-{
-    for (uint8_t addr = 1; addr < 127; addr++)
-    {
-        if (HAL_I2C_IsDeviceReady(&hi2c1, (addr << 1), 3, 10) == HAL_OK)
-        {
-            return 1;   // Tìm thấy thiết bị I2C bất kỳ
-        }
-    }
-    return 0; // Không tìm thấy gì
-}
-
 uint8_t I2C_Find_Address(void)
 {
     for (uint8_t addr = 1; addr < 127; addr++)
@@ -93,6 +81,7 @@ uint8_t I2C_Find_Address(void)
     }
     return 0;
 }
+
 /* USER CODE END 0 */
 
 /**
@@ -132,55 +121,26 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-//  HAL_Delay(200);   // Ch�? ổn định
-//  uint8_t found = I2C_Check_Any_Device();
-//  if (!found)
-//  {
-//	  // Không tìm thấy -> nháy nhanh mãi
-//	  while (1)
-//	  {
-//		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-//          HAL_Delay(150);
-//	  }
-//  }
-//  // 2) Tìm địa chỉ cụ thể
-//  uint8_t address = I2C_Find_Address();   // địa chỉ 7-bit
-//  if (address == 0)
-//  {
-//	  // Không nên xảy ra vì ở trên đã "found"
-//	  while (1)
-//	  {
-//		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-//		  HAL_Delay(100);
-//	  }
-//  }
-//  // Báo tìm thấy địa chỉ (3 lần nháy chậm)
-//  for (int i = 0; i < 3; i++)
-//  {
-//	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-//	  HAL_Delay(500);
-//	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-//	  HAL_Delay(500);
-//  }
-//  // 3) Tắt I2C1 của HAL, trả PB6/PB7 v�? GPIO
-//  HAL_I2C_DeInit(&hi2c1);
-//  // 4) Khởi tạo I2C m�?m trên PB7 (SDA), PB6 (SCL)
-//  I2C_init(GPIOB, GPIO_PIN_9, GPIOB, GPIO_PIN_8);
-//  // 5) Khởi tạo LCD với địa chỉ 7-bit vừa tìm được
-//  lcd_init(address);           // CHỈ TRUYỀN 7-bit, KHÔNG <<1
-//  lcd_clear();
-  SCH_Init();
-  MODE = MODE_1;
+  uint8_t address = I2C_Find_Address();
+  // 3) Tắt I2C1 của HAL, trả PB6/PB7 v�? GPIO
+  HAL_I2C_DeInit(&hi2c1);
+  // 4) Khởi tạo I2C m�?m trên PB7 (SDA), PB6 (SCL)
+  I2C_init(GPIOB, GPIO_PIN_9, GPIOB, GPIO_PIN_8);
+  // 5) Khởi tạo LCD với địa chỉ 7-bit vừa tìm được
+  lcd_init(address);           // CHỈ TRUYỀN 7-bit, KHÔNG <<1
+  lcd_clear();
+  lcd_center_text(0,"TRAFFIC LIGHT");
+  lcd_center_text(1,"SYSTEM START");
   SCH_Add_Task(TASK_LED_BLINK, 0, 500);
-//  SCH_Add_Task(TASK_SoftwareTimer, 0, 10);
-//  SCH_Add_Task(TASK_ScanButtons, 0, 10);
-//  SCH_Add_Task(TASK_FSM, 0, 10);
+  SCH_Add_Task(TASK_FSM, 0, 10);
+  SCH_Add_Task(TASK_SoftwareTimer, 0, 10);
+  SCH_Add_Task(TASK_ScanButtons, 0, 10);
+
   while (1)
   {
-	  /* USER CODE END WHILE */
-	  SCH_Dispatch_Tasks();
-	  /* USER CODE BEGIN 3 */
+    /* USER CODE END WHILE */
+	SCH_Dispatch_Tasks();
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -275,7 +235,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 7999;
+  htim2.Init.Prescaler = 6399;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 9;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
