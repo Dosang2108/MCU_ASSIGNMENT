@@ -20,5 +20,7 @@ void lcd_write_string(char *s);
 void ledON(void);
 void ledOFF(void);
 void lcd_center_text(int row, char *str);
+void lcd_center_text1(int row, char *str);
+
 
 #endif /* INC_LCD_I2C_H_ */

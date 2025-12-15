@@ -9,23 +9,12 @@
 #include <string.h>
 #include <stdio.h>
 
-// Biến trạng thái
 static int is_transitioning = 0;
 
-// Các biến lưu trạng thái cũ để tối ưu hiển thị (Chống ghi đè LCD liên tục)
 static int last_time_display = -1;
 static int last_handle_pattern = -1;
 static int last_transitioning = -1;
 
-void lcd_center_text1(int row, char *str) {
-    int len = strlen(str);
-    int padding = 0;
-    if (len < 16) {
-        padding = (16 - len) / 2;
-    }
-    lcd_gotoxy(padding, row);
-    lcd_write_string(str);
-}
 
 void displayHandleInfo() {
     if (is_transitioning) {
@@ -35,7 +24,6 @@ void displayHandleInfo() {
              time_display = (current_timer - 1) / 100 + 1;
         }
 
-        // TỐI ƯU: Chỉ cập nhật LCD nếu số giây thay đổi hoặc mới bắt đầu vào trạng thái này
         if (time_display != last_time_display || is_transitioning != last_transitioning) {
             char str[16];
 
@@ -43,14 +31,12 @@ void displayHandleInfo() {
             snprintf(str, sizeof(str), "YELLOW TIME: %d", time_display);
             lcd_center_text1(1, str);
 
-            // Cập nhật lại trạng thái cũ
             last_time_display = time_display;
             last_transitioning = is_transitioning;
         }
     }
-    // 2. TRƯỜNG HỢP: TRẠNG THÁI ỔN ĐỊNH (Xanh/Đỏ)
     else {
-        // TỐI ƯU: Chỉ cập nhật LCD nếu pattern thay đổi hoặc vừa thoát khỏi trạng thái chuyển đèn
+
         if (handle_pattern != last_handle_pattern || is_transitioning != last_transitioning) {
             if (handle_pattern == 0) {
                 lcd_gotoxy(0, 0);
@@ -65,16 +51,14 @@ void displayHandleInfo() {
                 lcd_write_string("L1:RED   HANDLE");
             }
 
-            // Cập nhật lại trạng thái cũ
+
             last_handle_pattern = handle_pattern;
             last_transitioning = is_transitioning;
-            // Reset biến time để lần sau vào transition nó sẽ cập nhật ngay
             last_time_display = -1;
         }
     }
 }
 
-// Hàm áp dụng trạng thái đèn cuối cùng
 void handle_apply_final_state(void) {
     if (handle_pattern == 0) {
         TrafficLight1Control(RED);
@@ -104,7 +88,6 @@ void fsm_handle_run(void) {
             return;
         }
 
-        // --- NÚT 1: Chuyển sang Lane 0 ĐỎ, Lane 1 XANH ---
         if (isButtonPressed(1) == 1) {
             if (handle_pattern == 1 && is_transitioning == 0) {
                 TrafficLight1Control(YELLOW);
@@ -113,7 +96,6 @@ void fsm_handle_run(void) {
                 handle_pattern = 0;
                 lcd_clear();
                 is_transitioning = 1;
-                // Reset biến hiển thị để ép cập nhật màn hình ngay lập tức
                 last_time_display = -1;
             }
             else if (handle_pattern == 0 && is_transitioning == 0) {
@@ -121,7 +103,6 @@ void fsm_handle_run(void) {
             }
         }
 
-        // --- NÚT 2: Chuyển sang Lane 0 XANH, Lane 1 ĐỎ ---
         if (isButtonPressed(2) == 1) {
             if (handle_pattern == 0 && is_transitioning == 0) {
                 TrafficLight1Control(RED);
@@ -130,7 +111,6 @@ void fsm_handle_run(void) {
                 handle_pattern = 1;
                 is_transitioning = 1;
                 lcd_clear();
-                // Reset biến hiển thị
                 last_time_display = -1;
             }
             else if (handle_pattern == 1 && is_transitioning == 0) {
@@ -138,13 +118,10 @@ void fsm_handle_run(void) {
             }
         }
 
-        // Xử lý Timer đếm ngược
         if (is_transitioning == 1) {
             if (timer_flag[2] == 1) {
                 handle_apply_final_state();
                 is_transitioning = 0;
-                // Khi kết thúc timer, is_transitioning về 0
-                // Vòng lặp sau displayHandleInfo sẽ tự nhận biết và vẽ lại màn hình trạng thái ổn định
             }
         }
     }

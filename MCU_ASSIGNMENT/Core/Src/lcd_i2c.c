@@ -147,4 +147,14 @@ void lcd_center_text(int row, char *str) {
     lcd_write_string(str);
 }
 
+void lcd_center_text1(int row, char *str) {
+    int len = strlen(str);
+    int padding = 0;
+    if (len < 16) {
+        padding = (16 - len) / 2;
+    }
+    lcd_gotoxy(padding, row);
+    lcd_write_string(str);
+}
+
 

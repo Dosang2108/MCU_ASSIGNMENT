@@ -8,18 +8,8 @@
 #include "fsm_automatic.h"
 #include "fsm_manual.h"
 
-void setTrafficLight(int lane, int state) {
-	if (lane == 0) {
-		TrafficLight1Control(state);
-	}
-	else {
-		TrafficLight2Control(state);
-	}
-}
-
 /* */
 void fsm_automatic(int lane) {
-    // 1. XỬ LÝ CHUYỂN TRẠNG THÁI (Logic FSM giữ nguyên, đưa lên đầu)
     switch(LED_STATE[lane]) {
         case INIT_STATE:
             if (lane == 0) {
@@ -59,7 +49,6 @@ void fsm_automatic(int lane) {
     }
 
     if (timerCounter[lane] % 100 == 0 || timerCounter[lane] > (timerCounter[lane]/100)*100 + 95) {
-        // Mẹo: timerCounter / 100 + 1 giúp làm tròn lên (499 -> 5, 1 -> 1)
         int time_display = timerCounter[lane] / 100 + 1;
 
         char str[16];

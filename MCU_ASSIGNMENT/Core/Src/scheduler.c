@@ -37,10 +37,7 @@ void SCH_Update(){
 		tick++;
 }
 
-// scheduler.c
 
-// 1. Sửa kiểu dữ liệu tham số giống với khai báo trong struct Task
-// 2. Đổi logic từ == sang >= để tránh trôi task (miss deadline)
 int runMe(uint64_t current_tick, uint32_t next_run){
     if(current_tick >= next_run) {
         return 1;
@@ -48,19 +45,17 @@ int runMe(uint64_t current_tick, uint32_t next_run){
     return 0;
 }
 
-// Trong hàm SCH_Dispatch_Tasks, gọi lại cho đúng:
 void SCH_Dispatch_Tasks(void){
     for(int i=0; i< curr_task; i++){
-        // Truyền đúng biến tick toàn cục
         if(runMe(tick, pTask[i].NEXT_RUN)){
             (*pTask[i].pFunction)();
 
             if(pTask[i].PERIOD==0){
                 SCH_Delete_Task(i);
+                i--;
             }
             else {
-                // Cập nhật thời gian chạy tiếp theo
-                pTask[i].NEXT_RUN = tick + pTask[i].PERIOD; // Cộng dồn từ tick hiện tại để tránh trôi
+                pTask[i].NEXT_RUN = tick + pTask[i].PERIOD;
             }
         }
     }

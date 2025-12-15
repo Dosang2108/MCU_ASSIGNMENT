@@ -22,6 +22,7 @@ void TrafficLight2Control(int state);
 
 
 void TwoWayControl(int state_1, int state_2);
+void setTrafficLight(int lane, int state);
 
 void TrafficBlink(int state);
 

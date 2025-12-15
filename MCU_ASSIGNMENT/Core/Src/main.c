@@ -76,7 +76,7 @@ uint8_t I2C_Find_Address(void)
     {
         if (HAL_I2C_IsDeviceReady(&hi2c1, (addr << 1), 3, 10) == HAL_OK)
         {
-            return addr;   // trả v�? địa chỉ 7-bit tìm được
+            return addr;
         }
     }
     return 0;
@@ -122,15 +122,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   uint8_t address = I2C_Find_Address();
-  // 3) Tắt I2C1 của HAL, trả PB6/PB7 v�? GPIO
   HAL_I2C_DeInit(&hi2c1);
-  // 4) Khởi tạo I2C m�?m trên PB7 (SDA), PB6 (SCL)
   I2C_init(GPIOB, GPIO_PIN_9, GPIOB, GPIO_PIN_8);
-  // 5) Khởi tạo LCD với địa chỉ 7-bit vừa tìm được
-  lcd_init(address);           // CHỈ TRUYỀN 7-bit, KHÔNG <<1
+  lcd_init(address);
   lcd_clear();
   lcd_center_text(0,"TRAFFIC LIGHT");
   lcd_center_text(1,"SYSTEM START");
+  HAL_Delay(2000);
+  lcd_clear();
   SCH_Add_Task(TASK_LED_BLINK, 0, 500);
   SCH_Add_Task(TASK_FSM, 0, 10);
   SCH_Add_Task(TASK_SoftwareTimer, 0, 10);

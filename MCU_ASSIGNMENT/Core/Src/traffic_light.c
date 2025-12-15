@@ -105,3 +105,13 @@ void TrafficBlink(int state){
 
 	}
 }
+
+
+void setTrafficLight(int lane, int state) {
+	if (lane == 0) {
+		TrafficLight1Control(state);
+	}
+	else {
+		TrafficLight2Control(state);
+	}
+}
